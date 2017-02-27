@@ -2,18 +2,54 @@
 <html>
 <head>
   <title>Homepage</title>
+  {% load static %}
+  <link rel='stylesheet' type='text/css' href="{% static '/main/css/pythonstyle.css' %}">
 </head>
 <body>
   <div class="container">
     <div id="userinfo">
-      Welcome {{ curr_user.first_name }}
-      <button><a href='/'>Logout</a></button>
+      <p>Welcome {{ curr_user.alias }}!</p>
+      <button><a class="button" href='/'>Logout</a></button>
     </div>
     {% if messages %}
       {% for i in messages %}
         <p>{{i.message }}</p>
       {% endfor %}
     {% endif %}
+
+    <div class="content">
+      <p>{ ~ Quotable Quotes ~ }</p>
+      {% for quote in quotes %}
+        <div class="single_quotes">
+          <p>{{quote.quote_by}}: {{quote.quote}}</p>
+          <p>Posted by:  <a href="/user/{{quote.user.id}}">{{quote.user.name}}</a></p>
+          <button><a class="button" href="add/{{quote.id}}">Add to My List</a></button>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="content">
+      <div id="favorite_quotes">
+        <p>{ ~ Your Favorites ~ }</p>
+        {% for favorite in favorites %}
+          <div class="single_quotes">
+            <p>{{favorite.quote.quote_by}}: {{favorite.quote.quote}}<p>
+            <p>Posted by: <a href="/user/{{favorite.quote.user.id}}">{{favorite.quote.user.name}}</a></p>
+            <button><a class="button" href="remove/{{quote.id}}">Remove From My List</a></button>
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div id="add_quote">
+        <form action="/quote/{{curr_user.id}}" method = "post">
+          {% csrf_token %}
+          <p>Quoted by:</p><input type="text" name="quote_by">
+          <p>Message:</p><textarea name="quote" rows="6" cols="40"></textarea>
+          <input type="submit" value = "Submit">
+        </form>
+      </div>
+    </div>
   </div>
 <body>
 </html>

@@ -2,10 +2,12 @@
 <html>
 <head>
   <title>Successful Registration</title>
+  {% load static %}
+  <link rel='stylesheet' type='text/css' href="{% static '/main/css/pythonstyle.css' %}">
 </head>
 <body>
   <div class="container">
-    <h1>Thanks {{ curr_user.first_name }}! You successfully registered!</h1>
+    <h1>Thanks {{ curr_user.alias }}! You successfully registered!</h1>
     <button><a href='/'>Go back to Login</a></button>
   </div>
 <body>

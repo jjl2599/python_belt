@@ -7,4 +7,8 @@ urlpatterns = [
     url(r'^success$', views.success),
     url(r'^home$', views.home),
     url(r'^sessions$', views.login_user),
+    url(r'^quote/(?P<user_id>\d+)$', views.quote),
+    url(r'^add/(?P<quote_id>\d+)$', views.add),
+    url(r'^remove/(?P<favorite_id>\d+)$', views.remove),
+    url(r'^user/(?P<user_id>\d+)$', views.user),
 ]
