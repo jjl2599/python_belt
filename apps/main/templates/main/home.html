@@ -30,7 +30,7 @@
           <div class="single_quotes">
             <p>{{favorite.quote.quote_by}}: {{favorite.quote.quote}}<p>
             <p>Posted by: <a href="/user/{{favorite.quote.user.id}}">{{favorite.quote.user.name}}</a></p>
-            <button><a class="button" href="remove/{{quote.id}}">Remove From My List</a></button>
+            <button><a class="button" href="remove/{{favorite.id}}">Remove From My List</a></button>
           </div>
         {% endfor %}
 

@@ -35,16 +35,13 @@ def success(request):
 
 def home(request):
 	user = User.objects.filter(id=request.session['user_id'])
-
 	quotes = Quote.objects.all()
-
+	quotes_show = Quote.objects.all()
 	favorites_show = Favorite.objects.filter(user_id=user)
 
 	favorited = []
 	for favorite in favorites_show:
 		favorited.append(favorite.quote)
-
-	quotes_show = Quote.objects.all()
 
 	not_favorited = []
 	for quote in quotes_show:
